@@ -66,15 +66,38 @@ void print_ascii_table(void)
 
 void print_bits(char c)
 {
-    int dec = (int)c;
-    int mask = 1;
     int i;
-    int out;
-    for (i = 0; i <= 8; i++)
+    for (i = 7; i >= 0; i--)
     {
-        out = c & mask;
-        printf("%u", out);
-        // printf("%d \n", mask);
-        mask = mask << 1;
+        printf("%d", (c >> i) & 1);
     }
 }
+
+/* This version of the code assumes that a long is 8 bytes (64 bits)
+It should deliver the right output on Mac OS and likely Linux
+*/
+void print_float_bits(double f)
+{
+    long now_a_long = *(long *)&f;
+    int i;
+    for (i = 63; i >= 0; i--)
+    {
+        printf("%ld", (now_a_long >> i) & 1);
+    }
+    printf("\n");
+}
+
+/* This version of the code assumes that a long is 4 bytes (32 bits)
+Therefore, the double needs to be cast in a long long instead
+It should deliver the right output on Windows
+
+void print_float_bits_windows(double f)
+{
+    long long now_a_long = *(long long *) &f;
+    int i;
+    for (i = 63; i >= 0; i--) {
+        printf("%lld", (now_a_long >> i) & 1);
+    }
+    printf("\n");
+}
+*/
