@@ -22,9 +22,25 @@ float calculate_difference(const float *observedFreq, const float *expectedFreq)
 char *to_uppercase(const char *str);
 
 /* Part 2 */
+typedef struct wordPair words;
+
+struct wordPair
+{
+    char *originalWord;
+    char *replacementWord;
+    int oLength;
+    int rLength;
+};
+
 char **split_sentences(const char *text);
 void print_string_array(char **strings);
 void free_sentences(char **sentences);
+
+words *input_words(char *o, char *r);
+char *to_lowercase(const char *str);
+void free_words(words *this);
+void print_words(words *this);
+char *change_wording(const char *text, words **list);
 
 /* DO NOT FORGET TO INCLUDE
 
