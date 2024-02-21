@@ -6,19 +6,24 @@
 
 int main(int argc, char **argv)
 {
+    /*--------Variable Declaration--------*/
     char *c;
 
+    /* PART 1: Detect language*/
     float *frequency;
     char *upper;
 
+    /*PART 2: Splitting into sentences*/
     char **splitSentences;
 
+    /*PART 2: Replacing words*/
     int numofWordPairs = 2;
     char *out;
     words *w, *w1;
     words **list;
     char *lower;
-    /* PART 1: Detect language*/
+    /*--------Variable Declaration--------*/
+
     if (argc != 2)
     {
         printf("Please provide a relevant file\n");
@@ -26,16 +31,19 @@ int main(int argc, char **argv)
     }
     c = file_to_str(argv[1]);
 
+    /*---------PART 1: Detect language--------*/
     frequency = malloc(NUM_LETTERS * sizeof(float));
     upper = to_uppercase(c);
     calculate_letter_frequency(upper, frequency);
+    /*----------------------------------------*/
 
-    /*PART 2: Splitting into sentences*/
+    /*-------PART 2: Splitting sentences------*/
     splitSentences = split_sentences(c);
     print_string_array(splitSentences);
     free_sentences(splitSentences);
+    /*----------------------------------------*/
 
-    /*PART 2: Replacing words*/
+    /*--------PART 2: Replacing words---------*/
     /*char *cTest = "On a bRiGHt and Sunny day, the dAY is Bright and sunny.";*/
     w = input_words("bright", "dark");
     w1 = input_words("day", "night");
@@ -46,6 +54,7 @@ int main(int argc, char **argv)
     out = change_wording(lower, list);
     printf("%s\n", out);
     free_words(w);
+    /*---------------------------------------*/
 }
 
 /* DO NOT MODIFY THIS FUNCTION */
