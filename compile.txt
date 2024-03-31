@@ -1,0 +1,4 @@
+gcc testing2.c -o testing2 -ansi -pedantic -Wall -Werror
+
+gcc Derivation.c -o Derivation -ansi -pedantic -Wall
+gcc CFG_basics.c -o CFG_basics -ansi -pedantic -Wall
